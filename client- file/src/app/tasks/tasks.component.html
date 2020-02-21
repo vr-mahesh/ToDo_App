@@ -1,0 +1,63 @@
+<form class="form"
+  (submit)="add(todoTitle.value,todoDescription.value,tododueDate.value,todotime.value,todocompleted.value); todoTitle.value='';todoDescription.value='';tododueDate.value='';todotime.value='';todocompleted.value=''">
+  <div class="">
+    <span>
+      <input #todoTitle class="inputSection" placeholder="Todo Name" />
+      <input #todoDescription class=" inputSection" placeholder="Todo description" />
+      <input #tododueDate class="inputSection" placeholder="Todo dueDate" />
+      <input #todotime class="inputSection" placeholder="Todo time" />
+      <input #todocompleted class="inputSection" placeholder="Todo completed " />
+      <input type="submit" value="ADD" class="btnSubmit" />
+    </span>
+  </div>
+</form>
+<div class="dataholder">
+  <table class="table_todo">
+    <tr>
+      <td class="title_todo title_headerr">Title</td>
+      <td class="title_todo title_headerr">Description</td>
+      <td class="title_todo title_headerr">Due Date</td>
+      <td class="title_todo title_headerr">Time</td>
+      <td class="title_todo title_headerr">Completed
+      <td>
+    </tr>
+    <tr class="table_rowStyle" *ngFor="let todo of todos">
+      <td class="title_todo">
+        <a (click)="edit(todo)">
+          <span class="input_editoption" *ngIf="todo!==editTodo">{{todo.title}}</span>
+          <input class="input_editoption" *ngIf="todo===editTodo" [(ngModel)]="todo.title" (keyup.enter)="update()">
+        </a>
+      </td>
+      <td class="title_description">
+        <a (click)="edit(todo)">
+          <span class="input_editoption" *ngIf="todo!==editTodo">{{todo.description}}</span>
+          <input class="input_editoption" *ngIf="todo===editTodo" [(ngModel)]="todo.description"
+            (keyup.enter)="update()">
+        </a>
+      </td>
+      <td class="title_dueDate">
+        <a (click)="edit(todo)">
+          <span class="input_editoption" *ngIf="todo!==editTodo">{{todo.dueDate}}</span>
+          <input class="input_editoption" *ngIf="todo===editTodo" [(ngModel)]="todo.dueDate" (keyup.enter)="update()">
+        </a>
+      </td>
+      <td class="title_time">
+        <a (click)="edit(todo)">
+          <span class="input_editoption" *ngIf="todo!==editTodo">{{todo.time}}</span>
+          <input class="input_editoption" *ngIf="todo===editTodo" [(ngModel)]="todo.time" (keyup.enter)="update()">
+        </a>
+      </td>
+      <td class="title_completed">
+        <a (click)="edit(todo)">
+          <span class="input_editoption" *ngIf="todo!==editTodo">{{todo.completed}}</span>
+          <input class="input_editoption" *ngIf="todo===editTodo" [(ngModel)]="todo.completed" (keyup.enter)="update()">
+        </a>
+      </td>
+      <td>
+        <button class="btn_sty btnEdit" (click)="update()">Update</button>
+        <button class="btn_sty btnDanger" title="delete todo" (click)="delete(todo)">Delete</button>
+      </td>
+
+    </tr>
+  </table>
+</div>
